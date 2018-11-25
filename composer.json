@@ -6,7 +6,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "SuRin\\Types\\":"tests/"
+      "SuRin\\Types\\":"tests/unit/"
     }
   },
   "name":"su-rin/type",
