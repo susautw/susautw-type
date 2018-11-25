@@ -44,6 +44,7 @@ class ComposerStaticInita45cbd00d14fd8b07cefbfc1660fade8
         'SuRin\\Types\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+            1 => __DIR__ . '/../..' . '/tests',
         ),
         'Doctrine\\Instantiator\\' => 
         array (

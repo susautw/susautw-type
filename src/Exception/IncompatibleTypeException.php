@@ -13,8 +13,8 @@ use Throwable;
 
 class IncompatibleTypeException extends TypeErrorException
 {
-	public function __construct(string $type,string $incompatible, int $code = 0, Throwable $previous = null)
+	public function __construct(string $expected, string $actual, int $code = 0, Throwable $previous = null)
 	{
-		parent::__construct("Incompatible type : need $type but get $incompatible.", $code, $previous);
+		parent::__construct("Incompatible type : expected $expected but got $actual.", $code, $previous);
 	}
 }
