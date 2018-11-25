@@ -1,6 +1,6 @@
 # susautw-type
 Check Types
-## 0.1.0
+## 0.1.2
 `* Optional`
 
 
