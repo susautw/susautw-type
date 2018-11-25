@@ -1,0 +1,24 @@
+{
+  "name":"su-rin/type",
+  "description": "Check Type.",
+  "keywords": ["type","hint","array"],
+  "license":"MIT",
+  "authors": [{
+    "name": "Rin Su",
+    "role":"Developer"
+  }],
+  "support": {
+    "email": "s1061583@gm.pu.edu.tw"
+  },
+  "require": {
+    "php":">=7.2.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit":"~7"
+  },
+  "autoload": {
+    "psr-4": {
+      "SuRin\\Types\\":"src/"
+    }
+  }
+}
