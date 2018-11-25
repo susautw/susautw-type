@@ -613,7 +613,8 @@ class ComposerStaticInita45cbd00d14fd8b07cefbfc1660fade8
 
     public static function getInitializer(ClassLoader $loader)
     {
-        return \Closure::bind(function () use ($loader) {
+        return \Closure::bind(
+			function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInita45cbd00d14fd8b07cefbfc1660fade8::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInita45cbd00d14fd8b07cefbfc1660fade8::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInita45cbd00d14fd8b07cefbfc1660fade8::$prefixesPsr0;

@@ -47,7 +47,7 @@ print 'ok';
 ```
 
 ##### Suggestion in IDE (here is phpstorm)
-`php
+```php
 <?php
 class A
 {
@@ -68,4 +68,4 @@ $arrA[0]->get();
 
 //method checkType too. (TypeArray)
 $arr->checkType(A::class);
-`
+```
