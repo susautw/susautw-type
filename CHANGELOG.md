@@ -2,6 +2,7 @@
 
 ## 0.1.3*
 - Move unit test files to /tests/unit
+- Fix readme suggestion session code
 
 ## 0.1.1/0.1.2
 - Stupid consequences of the author
