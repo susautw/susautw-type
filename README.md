@@ -51,7 +51,7 @@ print 'ok';
 <?php
 class A
 {
-    public function get():integer
+    public function get():int
     {
         return 1;
     }
