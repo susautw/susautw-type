@@ -21,22 +21,23 @@ class TypeArrayTest extends TestCase
 	/**
 	 * @throws ClassNotFoundException
 	 */
-	public function testConstructWithType()
+	public function testConstructWithTypeString()
 	{
-		try{
-			$arr = new TypeArray("string",["","123","abc",.05]);
-			$arr[] = "";
-		}catch (IncompatibleTypeException $e){
-			self::assertEquals(new IncompatibleTypeException("string","double"),$e);
-		}
+	    $this->expectException(IncompatibleTypeException::class);
+	    $this->expectExceptionMessage('Incompatible type : expected string but got double.');
 
-		try{
-			$arr2 = new TypeArray("integer",[1,2,4,5,6,7,true]);
-			$arr2[] = 8;
-		}catch (IncompatibleTypeException $e){
-			self::assertEquals(new IncompatibleTypeException("integer","boolean"),$e);
-		}
+	    new TypeArray("string",["","123","abc",.05]);
+	}
 
+	/**
+	 * @throws ClassNotFoundException
+	 */
+	public function testConstructWithTypeInteger()
+	{
+	    $this->expectException(IncompatibleTypeException::class);
+	    $this->expectExceptionMessage('Incompatible type : expected integer but got boolean.');
+
+        new TypeArray("integer",[1,2,4,5,6,7,true]);
 	}
 
 	/**
@@ -57,15 +58,12 @@ class TypeArrayTest extends TestCase
 	 */
 	public function testIncompatibleTypeAssign()
 	{
-		try {
-			/** @var string[]|TypeArray $arr */
-			$arr = new TypeArray("double");
-			$arr[] = "string";
-		} catch (IncompatibleTypeException $e) {
-			self::assertEquals(new IncompatibleTypeException("double","string"),$e);
-		}
+        $this->expectException(IncompatibleTypeException::class);
+        $this->expectExceptionMessage('Incompatible type : expected double but got string.');
 
-
+        /** @var string[]|TypeArray $arr */
+        $arr = new TypeArray("double");
+        $arr[] = "string";
 	}
 
 	/**
@@ -73,14 +71,12 @@ class TypeArrayTest extends TestCase
 	 */
 	public function testIncompatibleClassAssign()
 	{
-		/** @var FakeChild[]|TypeArray $arr */
-		try{
-			$arr = new TypeArray(FakeChild::class);
+        $this->expectException(IncompatibleTypeException::class);
+        $this->expectExceptionMessage('Incompatible type : expected ' . FakeChild::class . ' but got ' . FakeChild2::class . '.');
 
-			$arr[] = new FakeChild2();
-		}catch (IncompatibleTypeException $e){
-			self::assertEquals(new IncompatibleTypeException(FakeChild::class,FakeChild2::class),$e);
-		}
+        $arr = new TypeArray(FakeChild::class);
+
+        $arr[] = new FakeChild2();
 	}
 
 	/**
@@ -88,13 +84,11 @@ class TypeArrayTest extends TestCase
 	 */
 	public function testClassNotFound()
 	{
-		try {
-			$arr = new TypeArray("FakeNotFound");
-			$arr[] = new FakeChild2();
-		} catch (ClassNotFoundException $e) {
-			self::assertEquals(new ClassNotFoundException("FakeNotFound"),$e);
-		}
+        $this->expectException(ClassNotFoundException::class);
+        $this->expectExceptionMessage('Unknown Type : FakeNotFound.');
 
+        $arr = new TypeArray("FakeNotFound");
+        $arr[] = new FakeChild2();
 	}
 
 	/**
@@ -132,13 +126,12 @@ class TypeArrayTest extends TestCase
 	 */
 	public function testAssignSuperClass()
 	{
-		try {
-			/** @var FakeChild2[]|TypeArray $arr */
-			$arr = new TypeArray(FakeChild2::class);
-			$arr[] = new FakeParent2();
-		} catch (IncompatibleTypeException $e) {
-			self::assertEquals(new IncompatibleTypeException(FakeChild2::class,FakeParent2::class),$e);
-		}
+        $this->expectException(IncompatibleTypeException::class);
+        $this->expectExceptionMessage('Incompatible type : expected ' . FakeChild2::class . ' but got ' . FakeParent2::class . '.');
+
+        /** @var FakeChild2[]|TypeArray $arr */
+        $arr = new TypeArray(FakeChild2::class);
+        $arr[] = new FakeParent2();
 	}
 
 	/**
@@ -147,15 +140,13 @@ class TypeArrayTest extends TestCase
 	 */
 	public function testCheckTypeWithType()
 	{
+        $this->expectException(IncompatibleTypeException::class);
+        $this->expectExceptionMessage('Incompatible type : expected integer but got string.');
+
 		$arr = new TypeArray("string");
 
-
-		try {
-			$arr->checkType("string"); //ok
-			$arr->checkType("integer"); //incompatible expected integer actual string
-		} catch (IncompatibleTypeException $e) {
-			self::assertEquals(new IncompatibleTypeException("integer","string"),$e);
-		}
+        $arr->checkType("string"); //ok
+        $arr->checkType("integer"); //incompatible expected integer actual string
 	}
 
 	/**
@@ -163,13 +154,12 @@ class TypeArrayTest extends TestCase
 	 */
 	public function testCheckTypeWithChildrenClass()
 	{
-		try {
-			/** @var FakeParent[]|TypeArray $arr */
-			$arr = new TypeArray(FakeParent::class);
-			$arr->checkType(FakeChild::class);
-		} catch (IncompatibleTypeException $e) {
-			self::assertEquals(new IncompatibleTypeException(FakeChild::class,FakeParent::class),$e);
-		}
+        $this->expectException(IncompatibleTypeException::class);
+        $this->expectExceptionMessage('Incompatible type : expected ' . FakeChild::class . ' but got ' . FakeParent::class . '.');
+
+        /** @var FakeParent[]|TypeArray $arr */
+        $arr = new TypeArray(FakeParent::class);
+        $arr->checkType(FakeChild::class);
 	}
 
 	/**
