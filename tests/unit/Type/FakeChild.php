@@ -11,9 +11,8 @@ namespace SuRin\Types\Type;
 
 class FakeChild extends FakeParent
 {
-	public function get():string
-	{
-		return self::class;
-	}
-
+    public function get():string
+    {
+        return self::class;
+    }
 }

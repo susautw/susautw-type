@@ -11,5 +11,5 @@ namespace SuRin\Types\Type;
 
 abstract class FakeParent
 {
-	abstract public function get():string;
+    abstract public function get():string;
 }

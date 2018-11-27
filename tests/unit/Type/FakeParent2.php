@@ -11,8 +11,8 @@ namespace SuRin\Types\Type;
 
 class FakeParent2 implements FakeInterface
 {
-	public function get():string
-	{
-		return self::class;
-	}
+    public function get():string
+    {
+        return self::class;
+    }
 }

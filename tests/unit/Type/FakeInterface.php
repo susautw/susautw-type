@@ -11,5 +11,5 @@ namespace SuRin\Types\Type;
 
 interface FakeInterface
 {
-	public function get():string;
+    public function get():string;
 }

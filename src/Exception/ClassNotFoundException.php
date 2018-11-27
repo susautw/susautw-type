@@ -13,8 +13,8 @@ use Throwable;
 
 class ClassNotFoundException extends TypeErrorException
 {
-	public function __construct(string $unknown, int $code = 0, Throwable $previous = null)
-	{
-		parent::__construct("Unknown Type : $unknown.", $code, $previous);
-	}
+    public function __construct(string $unknown, int $code = 0, Throwable $previous = null)
+    {
+        parent::__construct("Unknown Type : $unknown.", $code, $previous);
+    }
 }
