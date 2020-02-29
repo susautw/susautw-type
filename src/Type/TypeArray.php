@@ -10,10 +10,11 @@ namespace SuRin\Types\Type;
 
 
 use ArrayObject;
+use JsonSerializable;
 use SuRin\Types\Exception\ClassNotFoundException;
 use SuRin\Types\Exception\IncompatibleTypeException;
 
-class TypeArray extends ArrayObject
+class TypeArray extends ArrayObject implements JsonSerializable
 {
     /**
      * @var array
@@ -33,6 +34,7 @@ class TypeArray extends ArrayObject
      */
     public function __construct(string $type, array $array = [])
     {
+        parent::__construct();
         if ($this->typeExists($type) || $this->classExists($type)) {
             $this->type = $type;
             foreach ($array as $key => $value) {
@@ -112,5 +114,13 @@ class TypeArray extends ArrayObject
     private function isClassParentsOrImplements(string $class):bool
     {
         return in_array($class, class_parents($this->type)) || in_array($class, class_implements($this->type));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize()
+    {
+        return (array)$this;
     }
 }
