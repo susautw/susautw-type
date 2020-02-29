@@ -2,6 +2,7 @@
 
 ## 0.1.4*
 - Refine all code with standard PSR-1 and PSR-2
+- Support json_encode
 
 ## 0.1.3
 - Move unit test files to /tests/unit
