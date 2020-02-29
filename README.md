@@ -1,6 +1,6 @@
 # susautw-type
 Check Types
-## 0.1.3
+## 0.1.4
 `* Optional`
 
 
@@ -49,12 +49,17 @@ print 'ok';
 ##### Suggestion in IDE (here is phpstorm)
 ```php
 <?php
-class A
+class A implements JsonSerializable
 {
     public function get():int
     {
         return 1;
     }
+
+    public function jsonSerialize()
+        {
+            return 1;
+        }
 }
 
 //if you write comment like this
@@ -62,10 +67,14 @@ class A
 /** @var A[]|TypeArray $arr */
 $arrA = new TypeArray(A::class);
 $arrA[] = new A();
+$arrA[] = new A();
 
 //method get will hint in IDE. (A)
 $arrA[0]->get();
 
 //method checkType too. (TypeArray)
 $arr->checkType(A::class);
+
+//json support
+json_encode($arrA);  // [1, 1]
 ```

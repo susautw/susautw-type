@@ -203,4 +203,19 @@ class TypeArrayTest extends TestCase
 
         self::assertEquals(FakeChild2::class, $arr[0]->get());
     }
+
+    /**
+     * @throws ClassNotFoundException
+     * @throws IncompatibleTypeException
+     */
+    public function testJsonEncode()
+    {
+        /** @var FakeJsonSerializable[]|TypeArray $arr */
+        $arr = new TypeArray(FakeJsonSerializable::class);
+        for ($i = 0; $i < 3; $i++) {
+            $arr[] = new FakeJsonSerializable();
+        }
+        $expected = '["json","json","json"]';
+        self::assertEquals($expected, json_encode($arr));
+    }
 }
